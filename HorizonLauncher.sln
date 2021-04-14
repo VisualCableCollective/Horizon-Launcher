@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorizonLauncher.Core", "src\HorizonLauncher.Core\HorizonLauncher.Core.csproj", "{9C641BB4-3FB7-4FDB-9425-71969905E64B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorizonLauncher.UI", "src\HorizonLauncher.UI\HorizonLauncher.UI.csproj", "{16F716CC-9C04-4060-BBBA-4F362D54AB24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{70BEA4D1-4965-45B6-BD4D-B07BC9C37C23}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorizonLauncher.Models", "src\HorizonLauncher.Models\HorizonLauncher.Models.csproj", "{8A752F8C-AEC4-44C7-A8B2-6ECCE26C7E46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorizonLauncher.Modules.HorizonAPIClient", "src\Modules\HorizonLauncher.Modules.HorizonAPIClient\HorizonLauncher.Modules.HorizonAPIClient.csproj", "{D62E707F-498F-4C03-B1BC-3F78A3841070}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C641BB4-3FB7-4FDB-9425-71969905E64B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C641BB4-3FB7-4FDB-9425-71969905E64B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C641BB4-3FB7-4FDB-9425-71969905E64B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C641BB4-3FB7-4FDB-9425-71969905E64B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F716CC-9C04-4060-BBBA-4F362D54AB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F716CC-9C04-4060-BBBA-4F362D54AB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F716CC-9C04-4060-BBBA-4F362D54AB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F716CC-9C04-4060-BBBA-4F362D54AB24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A752F8C-AEC4-44C7-A8B2-6ECCE26C7E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A752F8C-AEC4-44C7-A8B2-6ECCE26C7E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A752F8C-AEC4-44C7-A8B2-6ECCE26C7E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A752F8C-AEC4-44C7-A8B2-6ECCE26C7E46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62E707F-498F-4C03-B1BC-3F78A3841070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62E707F-498F-4C03-B1BC-3F78A3841070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62E707F-498F-4C03-B1BC-3F78A3841070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62E707F-498F-4C03-B1BC-3F78A3841070}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D62E707F-498F-4C03-B1BC-3F78A3841070} = {70BEA4D1-4965-45B6-BD4D-B07BC9C37C23}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D98962A-25ED-4AF0-ABFF-955A39617AED}
+	EndGlobalSection
+EndGlobal

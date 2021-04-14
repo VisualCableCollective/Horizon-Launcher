@@ -1,0 +1,32 @@
+﻿<Window x:Class="Horizon_Launcher.UI.Windows.LoadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Horizon_Launcher"
+        mc:Ignorable="d"
+        Title="Loading Horizon Launcher..." Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize" Background="Black" WindowStartupLocation="CenterScreen"
+        ContentRendered="Window_ContentRendered">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Backgrounds/LoadingWindow.png" Opacity="0.7"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="v1.0.0 Development Build" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Opacity="0.7"/>
+        <Grid VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Starting Horizon Launcher" Foreground="White" FontSize="35" FontWeight="Bold" Margin="10,0,0,0" Padding="0"/>
+            <Label Grid.Row="1" Content="Loading Application..." Foreground="White" FontSize="13" Margin="10,0,0,0" Padding="0"/>
+            <Grid Grid.Row="2">
+                <ProgressBar Foreground="#1c86ff" Value="70" Height="12" Background="Transparent" BorderBrush="Transparent" Margin="0,20,0,0"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

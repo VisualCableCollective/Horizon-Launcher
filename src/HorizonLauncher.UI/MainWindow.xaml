@@ -1,0 +1,16 @@
+﻿<Window x:Class="HorizonLauncher.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:HorizonLauncher.UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="LoadingOverlay" Background="Black" Panel.ZIndex="1">
+            <Image gif:ImageBehavior.AnimatedSource="Ressources/GIFs/loading-indicator.gif" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="100"/>
+        </Grid>
+        <Frame x:Name="pageContent" Panel.ZIndex="0"/>
+    </Grid>
+</Window>
