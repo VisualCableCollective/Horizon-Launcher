@@ -18,11 +18,19 @@
 
   <ItemGroup>
     <None Remove="Ressources\GIFs\loading-indicator.gif" />
+    <None Remove="Ressources\UI\restore.png" />
+    <None Remove="Ressources\UI\x-white.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Ressources\GIFs\loading-indicator.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\restore.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\x-white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

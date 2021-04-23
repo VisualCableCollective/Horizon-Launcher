@@ -24,7 +24,8 @@ namespace HorizonLauncher.UI
         public MainWindow()
         {
             InitializeComponent();
-            pageContent.Content = new Pages.Login(this);
+            //pageContent.Content = new Pages.Login(this);
+            pageContent.Content = new Pages.Home(this);
         }
 
         public void ShowLoadingOverlay()
