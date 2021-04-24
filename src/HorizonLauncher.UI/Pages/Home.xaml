@@ -55,22 +55,43 @@
                 </Border>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1" Name="PageWrapper">
+        <Grid Grid.Row="1" Name="PageWrapper" MaxWidth="1216px">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Grid Name="StoreInformationWrapper" Margin="100,20">
+            <Grid Name="StoreInformationWrapper" Margin="0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="Get ready for a new era." Foreground="White" FontSize="40px" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Foreground="White" FontSize="16px" TextWrapping="Wrap" Margin="0,5,0,0">
+                <Label Content="Get ready for a new era." HorizontalAlignment="Center" Style="{StaticResource H1Style}"/>
+                <TextBlock Grid.Row="1" TextWrapping="Wrap" Margin="0,5,0,0" Style="{StaticResource ParagraphStyle}">
                     The Horizon storefront is currently under heavy development. The Horizon storefront is currently under heavy development. You can find the latest information about our development progress on our website and on our Discord server.</TextBlock>
             </Grid>
-            <Grid Grid.Row="1" Name="VCCProductsRowWrapper" Margin="100,20">
+            <Grid Grid.Row="1" Name="VCCAppsRowWrapper" Margin="0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
                 <Label Content="Applications made by the VisualCableCollective" FontSize="20px" FontWeight="SemiBold" Foreground="White"/>
+                <StackPanel Grid.Row="1" Name="VCCAppsRow" Orientation="Horizontal">
+                    <Grid Name="App">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="300"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Name="AppImageWrapper">
+                            <Grid Name="Background">
+                                <Image Name="Banner">
+                                </Image>
+                            </Grid>
+                            <Grid Name="ProgressIndicator" >
+                                <Image Source="../Ressources/UI/Placeholder/AppBannerPlaceholder.png" Height="300" Width="200"></Image>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

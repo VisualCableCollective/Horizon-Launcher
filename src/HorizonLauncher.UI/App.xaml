@@ -4,6 +4,18 @@
              xmlns:local="clr-namespace:HorizonLauncher.UI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="BaseTextStyle" TargetType="{x:Type FrameworkElement}">
+            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="Label.Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="H1Style" TargetType="{x:Type Label}" BasedOn="{StaticResource BaseTextStyle}">
+            <Setter Property="FontFamily" Value="pack://application:,,,/Ressources/UI/Fonts/Titillium Web/#Titillium Web Bold"/>
+            <Setter Property="FontSize" Value="40px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="ParagraphStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextStyle}">
+            <Setter Property="FontFamily" Value="pack://application:,,,/Ressources/UI/Fonts/Titillium Web/#Titillium Web"/>
+            <Setter Property="FontSize" Value="16px"/>
+        </Style>
     </Application.Resources>
 </Application>

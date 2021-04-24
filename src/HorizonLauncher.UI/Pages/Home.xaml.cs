@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.Shapes;
 
 namespace HorizonLauncher.UI.Pages
 {
@@ -22,7 +26,14 @@ namespace HorizonLauncher.UI.Pages
     {
         public Home(MainWindow mainWindow)
         {
+            var img = SixLabors.ImageSharp.Image.Load("Ressources/UI/Placeholder/AppBannerPlaceholder.png");
+
+            SixLabors.ImageSharp.Image dest = img.Clone(x => x.Saturate(0));
+
+            dest.Save("cacheimg.png");
+
             InitializeComponent();
+            Banner.Source = (ImageSource)new ImageSourceConverter().ConvertFromString("cacheimg.png");
             mainWindow.HideLoadingOverlay();
         }
     }

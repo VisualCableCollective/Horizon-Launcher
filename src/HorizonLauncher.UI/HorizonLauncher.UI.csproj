@@ -18,6 +18,17 @@
 
   <ItemGroup>
     <None Remove="Ressources\GIFs\loading-indicator.gif" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\OFL.txt" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-Black.ttf" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-BoldItalic.ttf" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-ExtraLight.ttf" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-ExtraLightItalic.ttf" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-Italic.ttf" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-Light.ttf" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-LightItalic.ttf" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-SemiBold.ttf" />
+    <None Remove="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-SemiBoldItalic.ttf" />
+    <None Remove="Ressources\UI\Placeholder\AppBannerPlaceholder.png" />
     <None Remove="Ressources\UI\restore.png" />
     <None Remove="Ressources\UI\x-white.png" />
   </ItemGroup>
@@ -25,6 +36,39 @@
   <ItemGroup>
     <Content Include="Ressources\GIFs\loading-indicator.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\OFL.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-BoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-Italic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-LightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Fonts\Titillium Web\TitilliumWeb-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\UI\Placeholder\AppBannerPlaceholder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Ressources\UI\restore.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -36,6 +80,8 @@
 
   <ItemGroup>
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="89.0.170" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0001" />
     <PackageReference Include="WpfAnimatedGif" Version="2.0.0" />
   </ItemGroup>
 
