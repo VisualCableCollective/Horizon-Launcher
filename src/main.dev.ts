@@ -18,7 +18,6 @@ import MenuBuilder from './menu';
 
 export default class AppUpdater {
   constructor() {
-    log.transports.file.level = 'info';
     autoUpdater.logger = log;
     autoUpdater.checkForUpdatesAndNotify();
   }
@@ -38,6 +37,17 @@ if (
   require('electron-debug')();
 }
 
+const InitalizeLogger = () => {
+  log.transports.console.format =
+    '[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] {text}';
+  log.transports.file.format =
+    '[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] {text}';
+
+  log.transports.console.level = 'silly';
+  log.transports.file.level = 'silly';
+  Object.assign(console, log.functions);
+};
+
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
@@ -52,6 +62,9 @@ const installExtensions = async () => {
 };
 
 const createWindow = async () => {
+  InitalizeLogger();
+  console.log('Hello there!');
+  console.error('Oh no error');
   if (
     process.env.NODE_ENV === 'development' ||
     process.env.DEBUG_PROD === 'true'
