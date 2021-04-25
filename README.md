@@ -15,3 +15,6 @@ Here is a good tutorial on how to contribute to projects: https://github.com/fir
 This repository currently has 1 branch:
 
 - main: Development source code. Push your work on features, etc. to this branch
+
+## Additional Packages
+- [TailwindCSS](https://tailwindcss.com/): CSS Framework
