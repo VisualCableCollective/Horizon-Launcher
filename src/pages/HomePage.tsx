@@ -8,7 +8,7 @@ import ProductPreviewItem from "../components/products/ProductPreviewItem";
 import Product, {OwnershipStatus} from "../models/Product";
 
 const HomePage = () => {
-    let dummyProduct = new Product("VTCManager", VTCMBanner.toString(), OwnershipStatus.Installing);
+    let dummyProduct = new Product("VTCManager", VTCMBanner.toString(), OwnershipStatus.Owned);
     dummyProduct.installationProgress = 10;
 
     return (

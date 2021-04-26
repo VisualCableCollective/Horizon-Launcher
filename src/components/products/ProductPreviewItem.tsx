@@ -1,5 +1,6 @@
 // Icons
-import { ImArrowDown } from "react-icons/im";
+import { ImArrowDown, ImPlay3 } from "react-icons/im";
+import {GiPauseButton} from "react-icons/gi";
 
 // Modules
 import PropTypes, { InferProps } from "prop-types";
@@ -14,7 +15,7 @@ function ProductPreviewItem({ product }: InferProps<typeof ProductPreviewItem.pr
     return (
         <div className="product-preview-item flex flex-col items-start">
             <ProductPreviewBanner bannerImgSrc={product.bannerImgSrc} productOwnershipStatus={product.ownershipStatus} productInstallationProgress={product.installationProgress} />
-            <ProductInteractionSection productName={product.name} />
+            <ProductInteractionSection product={product} />
         </div>
     );
 }
@@ -33,7 +34,7 @@ function ProductPreviewBanner({ productOwnershipStatus, bannerImgSrc, productIns
             break;
     }
     return (
-        <div className="banner-wrapper" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT+"px", width: PRODUCT_PREVIEW_BANNER_WIDTH+"px" }}>
+        <div className="product-preview-banner-wrapper" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT+"px", width: PRODUCT_PREVIEW_BANNER_WIDTH+"px" }}>
             <div className="banner-hover-overly absolute z-20 rounded bg-white bg-opacity-0 hover:bg-opacity-10 transition-all duration-200 ease-in-out" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT+"px", width: PRODUCT_PREVIEW_BANNER_WIDTH+"px" }} />
             <div className="banner-progress-indicator absolute z-10 bg-left	bg-cover rounded" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT+"px", width: progressIndicatorWidth+"px", backgroundImage: "url(" + bannerImgSrc + ")" }} />
             <div className="banner-bg absolute flex justify-center items-center" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT+"px", width: PRODUCT_PREVIEW_BANNER_WIDTH+"px" }}>
@@ -48,19 +49,39 @@ ProductPreviewBanner.propTypes = {
     productInstallationProgress: PropTypes.number.isRequired,
 }
 
-function ProductInteractionSection({ productName }: InferProps<typeof ProductInteractionSection.propTypes>) {
+function ProductInteractionSection({ product }: InferProps<typeof ProductInteractionSection.propTypes>) {
+    let statusMessage = "n/a";
+    let statusIcon;
+    switch(product.ownershipStatus){
+        case OwnershipStatus.NotOwned:
+            // ToDo
+            break;
+        case OwnershipStatus.Owned:
+            statusIcon = <ImArrowDown style={{ height: "13px" }} />;
+            statusMessage = "Install";
+            break;
+        case OwnershipStatus.Installed:
+            statusIcon = <ImPlay3 style={{ height: "14px" }} />;
+            statusMessage = "Start";
+            break;
+        case OwnershipStatus.Installing:
+            statusIcon = <GiPauseButton style={{ height: "11px" }} />;
+            statusMessage = product.installationProgress + "% installed";
+            break;
+    }
+
     return (
-        <div className="bottom-information flex flex-col items-start mt-1">
-            <h1 className="text-base ml-1">{productName}</h1>
-            <div className="app-status flex flex-row items-center" style={{ color: "#ABABAB" }}>
-                <ImArrowDown style={{ height: "12px" }} />
-                <p className="text-sm m-0 p-0" style={{ marginLeft: "2px", marginBottom: "1px" }}>15% installed</p>
+        <div className="product-preview-interaction-section flex flex-col items-start mt-1">
+            <h1 className="text-base ml-1">{product.name}</h1>
+            <div className="product-status flex flex-row items-center" style={{ color: "#ABABAB" }}>
+                {statusIcon}
+                <p className="text-sm m-0 p-0" style={{ marginLeft: "4px" }}>{statusMessage}</p>
             </div>
         </div>
     );
 }
 ProductInteractionSection.propTypes = {
-    productName: PropTypes.string.isRequired
+    product: Product
 }
 
 export default ProductPreviewItem;
