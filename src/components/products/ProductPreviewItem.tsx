@@ -1,10 +1,14 @@
 // Icons
 import {ImArrowDown} from "react-icons/im";
 
+// Modules
+import PropTypes, { InferProps } from "prop-types";
+
+
 const PRODUCT_PREVIEW_BANNER_HEIGHT = "300px";
 const PRODUCT_PREVIEW_BANNER_WIDTH = "200px";
 
-const ProductPreviewItem = ({productName, bannerImgSrc}) => {
+function ProductPreviewItem ({ productName, bannerImgSrc }: InferProps<typeof ProductPreviewItem.propTypes>) {
     return (
         <div className="product-preview-item flex flex-col items-start">
             <ProductPreviewBanner bannerImgSrc={bannerImgSrc} />
@@ -12,8 +16,12 @@ const ProductPreviewItem = ({productName, bannerImgSrc}) => {
         </div>
     );
 }
+ProductPreviewItem.propTypes = {
+    productName: PropTypes.string.isRequired,
+    bannerImgSrc: PropTypes.string.isRequired
+}
 
-const ProductPreviewBanner = ({bannerImgSrc}) => {
+function ProductPreviewBanner({ bannerImgSrc }: InferProps<typeof ProductPreviewBanner.propTypes>) {
     return (
         <div className="banner-wrapper" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT, width: PRODUCT_PREVIEW_BANNER_WIDTH }}>
             <div className="banner-hover-overly absolute z-20 rounded bg-white bg-opacity-0 hover:bg-opacity-10 transition-all duration-200 ease-in-out" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT, width: PRODUCT_PREVIEW_BANNER_WIDTH }}/>
@@ -24,8 +32,11 @@ const ProductPreviewBanner = ({bannerImgSrc}) => {
         </div>
     );
 }
+ProductPreviewBanner.propTypes = {
+    bannerImgSrc: PropTypes.string.isRequired
+}
 
-const ProductInteractionSection = ({productName}) => {
+function ProductInteractionSection({ productName }: InferProps<typeof ProductInteractionSection.propTypes>) {
     return (
         <div className="bottom-information flex flex-col items-start mt-1">
             <h1 className="text-base ml-1">{productName}</h1>
@@ -35,6 +46,9 @@ const ProductInteractionSection = ({productName}) => {
             </div>
         </div>
     );
+}
+ProductInteractionSection.propTypes = {
+    productName: PropTypes.string.isRequired
 }
 
 export default ProductPreviewItem;

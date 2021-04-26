@@ -2,6 +2,9 @@
 import XWhite from "../assets/x-white.png";
 import RestoreWindow from "../assets/restore-window-1.png";
 
+// Modules
+import PropTypes, { InferProps } from "prop-types";
+
 const TitleBar = () => {
     let iconStyle = {height: "20px", widht: "auto"};
 
@@ -15,12 +18,15 @@ const TitleBar = () => {
     );
 }
 
-const Icon = ({icon}) => {
+function Icon({ icon }: InferProps<typeof Icon.propTypes>) {
     return (
         <div className="title-bar-icon flex justify-center items-center mx-2">
             {icon}
         </div>
     );
+}
+Icon.propTypes = {
+    icon: PropTypes.element.isRequired
 }
 
 export default TitleBar;
