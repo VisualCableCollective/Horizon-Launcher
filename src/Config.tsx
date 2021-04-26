@@ -1,5 +1,13 @@
 export default class Config {
-    isAppInDevelopmentMode: boolean = true;
-    prodAPIServer: string = "";
-    localAPIDevServer: string = "http://localhost:8000";
+    static isAppInDevelopmentMode: boolean = true;
+    static prodAPIServer: string = "";
+    static localAPIDevServer: string = "http://localhost:8000";
+
+    static getAPIServerURL(){
+        if(this.isAppInDevelopmentMode){
+            return this.localAPIDevServer;
+        }else{
+            return this.prodAPIServer;
+        }
+    }
 }
