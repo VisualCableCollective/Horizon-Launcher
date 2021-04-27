@@ -6,7 +6,7 @@ import PropTypes, { InferProps } from "prop-types";
 
 function LoadingOverlay({ isVisible }: InferProps<typeof LoadingOverlay.propTypes>) {
     return (
-        <div className={"loading-overlay absolute z-10 min-w-full min-h-screen flex items-center justify-center bg-black transition-opacity duration-500 " + (isVisible ? "opacity-100 pointer-events-none" : " opacity-0")}>
+        <div className={"loading-overlay absolute z-10 min-w-full min-h-screen flex items-center justify-center bg-black transition-opacity duration-500 " + (isVisible ? "opacity-100" : " opacity-0 pointer-events-none")}>
             <img src={LoadingIndicator.toString()} alt="Loading..."  style={{maxHeight: "100px"}} />
         </div>
     );
