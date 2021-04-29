@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-const { ipcRenderer  } = window.require('electron');
+
+const electron = window.require('electron');
 
 // set Electron window background color
-ipcRenderer.send("change-window-background", "linear-gradient(180deg, #01111A 0%, #053A58 100%)")
+electron.ipcRenderer.send("change-window-background", "linear-gradient(180deg, #01111A 0%, #053A58 100%)")
 
 ReactDOM.render(
   <React.StrictMode>
