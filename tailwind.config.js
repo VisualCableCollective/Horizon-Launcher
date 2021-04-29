@@ -5,11 +5,16 @@ module.exports = {
     extend: {
       fontFamily: {
         'titillium-web' : ['Titillium Web']
+      },
+      backgroundColor: {
+        'button-1': '#3b3b3b',
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      opacity: ['disabled'],
+    },
   },
   plugins: [],
 }
