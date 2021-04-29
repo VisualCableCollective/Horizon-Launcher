@@ -1,7 +1,5 @@
-.home-page {
+.bg-gradient-1 {
   background: linear-gradient(180deg, #01111A 0%, #053A58 100%);
-  min-width: 100vw;
-  min-height: 100vh;
 }
 
 .title-bar{
