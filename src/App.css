@@ -5,3 +5,7 @@
 .title-bar{
   -webkit-app-region: drag
 }
+
+html, body {
+  background-color: transparent;
+}

@@ -13,7 +13,7 @@ const HomePage = () => {
     dummyProduct.installationProgress = 10;
 
     return (
-        <div className="home-page bg-gradient-1">
+        <div className="home-page">
             <TitleBar />
             <div className="flex flex-col items-center">
                 <div className="store-information-wrapper flex flex-col justify-center items-center max-w-screen-xl py-5 w-full mb-2.5">
