@@ -17,8 +17,14 @@ class WebsocketHandler {
             wsPort: Config.websocketPort,
             forceTLS: false,
             disableStats: true,
+            authEndpoint: Config.websocketAuthEndpoint,
         });
         this.echoHandler.connect();
+        setTimeout(() => {
+            this.echoHandler.private("client.23").listen("login", (e: any) => {
+                console.log("got event: " + e.message);
+            })
+        }, 1000);
         this.initDone = true;
     }
 

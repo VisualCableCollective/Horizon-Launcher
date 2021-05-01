@@ -15,4 +15,5 @@ export default class Config {
     static pusherKey: string = "de89hDFJ34nfeunhui";
     static websocketHost: string = "localhost";
     static websocketPort: number = 6001;
+    static websocketAuthEndpoint: string = "http://localhost:8000/broadcasting/auth";
 }
