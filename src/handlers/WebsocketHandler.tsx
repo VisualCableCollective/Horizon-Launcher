@@ -19,9 +19,17 @@ class WebsocketHandler {
             disableStats: true,
         });
         this.echoHandler.connect();
-
         this.initDone = true;
     }
+
+    /* HOW TO LISTEN FOR EVENTS
+    The event has to be prefixed with a '.'.
+    The data for this example was '{"message": "test"}'.
+
+    this.echoHandler.channel("Test").listen('.OrderShipmentStatusUpdated', (e: any) => {
+            console.log("got event: " + e.message);
+        });
+    */
 }
 
 export default WebsocketHandler;
