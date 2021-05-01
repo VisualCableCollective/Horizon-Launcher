@@ -10,4 +10,9 @@ export default class Config {
             return this.prodAPIServer;
         }
     }
+
+    // Websocket Server Credentials
+    static pusherKey: string = "de89hDFJ34nfeunhui";
+    static websocketHost: string = "localhost";
+    static websocketPort: number = 6001;
 }
