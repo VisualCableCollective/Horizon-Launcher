@@ -1,7 +1,7 @@
 export default class Config {
     static isAppInDevelopmentMode: boolean = true;
     static prodAPIServer: string = "";
-    static localAPIDevServer: string = "http://localhost:8000";
+    static localAPIDevServer: string = "http://computer.local:8000";
 
     static getAPIServerURL(){
         if(this.isAppInDevelopmentMode){
@@ -15,5 +15,5 @@ export default class Config {
     static pusherKey: string = "de89hDFJ34nfeunhui";
     static websocketHost: string = "localhost";
     static websocketPort: number = 6001;
-    static websocketAuthEndpoint: string = "http://localhost:8000/broadcasting/auth";
+    static websocketAuthEndpoint: string = Config.getAPIServerURL() + "/broadcasting/auth";
 }
