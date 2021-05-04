@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App font-titillium-web text-white">
       <LoadingOverlay isVisible={isLoadingOverlayVisible} />
-      <HomePage />
+      <LoginPage />
     </div>
   );
 }
