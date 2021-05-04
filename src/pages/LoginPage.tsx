@@ -4,9 +4,24 @@ import Config from "../Config";
 import WebsocketHandler from "../handlers/WebsocketHandler";
 
 // Modules
+import { useEffect } from 'react';
 const electron = window.require("electron");
 
 function LoginPage() {
+    // WS handling
+    useEffect(() => {
+        WebsocketHandler.echoHandler.channel("client." + WebsocketHandler.echoHandler.socketId())
+        .listen('.user.authorized', (e: any) => {
+            console.log("got token: " + e.authToken);
+        });
+    }, []);
+
+    useEffect(() => {
+        // Specify how to clean up after unmount
+        return function cleanup() {
+            WebsocketHandler.echoHandler.channel("client." + WebsocketHandler.echoHandler.socketId()).stopListening(".user.authorized");
+        };
+    });
     return (
         <div className="login-page min-h-screen min-w-full flex items-center justify-center" style={{ backgroundColor: "#0f0f0f" }}>
             <div className="px-14 py-10 w-full max-w-md" style={{ backgroundColor: "#242424" }}>
@@ -29,7 +44,7 @@ function LoginPage() {
     );
 }
 
-function SignInUsingBrowser(){
+function SignInUsingBrowser() {
     electron.shell.openExternal(Config.getAPIServerURL() + "/auth/vcc/redirect?socketID=" + encodeURI(WebsocketHandler.echoHandler.socketId()))
 }
 

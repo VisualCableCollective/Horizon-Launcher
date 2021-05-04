@@ -7,6 +7,7 @@ const Pusher = require('pusher-js');
 class WebsocketHandler {
     static echoHandler: Echo;
     static initDone: boolean = false;
+    static isConnected: boolean = false;
     static Init() {
         if (this.initDone) {
             return;
@@ -28,9 +29,7 @@ class WebsocketHandler {
                 this.echoHandler.connector.pusher.config.auth.headers["X-Socket-ID"] = this.echoHandler.socketId();
                 this.echoHandler.connector.pusher.config.auth.headers["Authorization"] = "Bearer 2|uUpNkiQuzrAj6FNEMZ63OKdITAEV845Y97nt473e";
                 this.echoHandler.connector.pusher.config.auth.headers["Accept"] = "application/json";
-                this.echoHandler.private("client." + this.echoHandler.socketId()).listen("login", (e: any) => {
-                    console.log("got event: " + e.message);
-                });
+                this.isConnected = true;
             }, 100);
         });
         this.echoHandler.connect();
