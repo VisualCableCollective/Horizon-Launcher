@@ -6372,6 +6372,11 @@
   "resolved" "https://registry.npmjs.org/is-dotfile/-/is-dotfile-1.0.3.tgz"
   "version" "1.0.3"
 
+"is-electron@^2.2.0":
+  "integrity" "sha512-SpMppC2XR3YdxSzczXReBjqs2zGscWQpBIKqwXYBFic0ERaxNVgwLCHwOLZeESfdJQjX0RDvrJ1lBXX2ij+G1Q=="
+  "resolved" "https://registry.npmjs.org/is-electron/-/is-electron-2.2.0.tgz"
+  "version" "2.2.0"
+
 "is-extendable@^0.1.0", "is-extendable@^0.1.1":
   "integrity" "sha1-YrEQ4omkcUGOPsNqYX1HLjAd/Ik="
   "resolved" "https://registry.npmjs.org/is-extendable/-/is-extendable-0.1.1.tgz"

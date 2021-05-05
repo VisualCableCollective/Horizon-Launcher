@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 
 // Handlers
 import WebsocketHandler from "./handlers/WebsocketHandler";
+import LauncherDataHandler from "./handlers/LauncherDataHandler";
 
 // Modules
 import { useState, useEffect } from "react";
@@ -17,6 +18,8 @@ function App() {
   const [isLoadingOverlayVisible, setIsLoadingOverlayVisible] = useState(true);
   const [canRenderPage, setCanRenderPage] = useState(false);
   let currentPage = null;
+
+  LauncherDataHandler.Init();
 
   WebsocketHandler.Init();
   WebsocketHandler.echoHandler.connector.pusher.connection.bind('connected', () => {
