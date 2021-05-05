@@ -10,6 +10,10 @@ This project is not officially announced and is in development.
 
 Here is a good tutorial on how to contribute to projects: https://github.com/firstcontributions/first-contributions <br>
 
+## Packages used in this project
+- TailwindCSS: CSS Framework
+- react-icons: Icon library
+
 ## Branches
 
 This repository currently has 1 branch:

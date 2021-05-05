@@ -4,10 +4,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'titillium-web' : ['Titillium Web']
+        'titillium-web': ['Titillium Web']
       },
       backgroundColor: {
         'button-1': '#3b3b3b',
+      },
+      animation: {
+        'spin-faster': 'spin 0.75s linear infinite',
       }
     },
   },
