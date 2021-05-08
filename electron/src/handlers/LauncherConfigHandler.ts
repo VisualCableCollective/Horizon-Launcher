@@ -1,5 +1,5 @@
 import Store from "electron-store";
-const { ipcMain } = require('electron')
+import { ipcMain } from 'electron';
 
 export default class LauncherConfigHandler {
     private static initDone: boolean = false;
@@ -21,8 +21,8 @@ export default class LauncherConfigHandler {
                 console.error(this.logPrefix + "Trying to get a non-existing key (" + arg.key + ")");
                 return;
             }
-            let val = this.store.get(arg.key);
-            console.debug(this.logPrefix + "Key: " + arg.key + "| Value: " + val);ww
+            const val = this.store.get(arg.key);
+            console.debug(this.logPrefix + "Key: " + arg.key + "| Value: " + val);
             event.returnValue = val;
         });
 
@@ -35,7 +35,7 @@ export default class LauncherConfigHandler {
                 console.error(this.logPrefix + "Trying to set a non-existing key (" + arg.key + ")");
                 return;
             }
-            let val = this.store.set(arg.key, arg.value);
+            const val = this.store.set(arg.key, arg.value);
             console.debug(this.logPrefix + "Updated value: Key: " + arg.key + "| Value: " + val);
             event.returnValue = val;
         });

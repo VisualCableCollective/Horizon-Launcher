@@ -1,6 +1,5 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow, ipcMain } from 'electron';
-import fs from 'fs';
 import LauncherConfigHandler from "./handlers/LauncherConfigHandler";
 
 function createWindow() {
