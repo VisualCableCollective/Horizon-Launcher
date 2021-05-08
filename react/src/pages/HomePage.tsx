@@ -15,7 +15,7 @@ const HomePage = () => {
     return (
         <div className="home-page">
             <TitleBar />
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center px-4">
                 <div className="store-information-wrapper flex flex-col justify-center items-center max-w-screen-xl py-5 w-full mb-2.5">
                     <h1 className="font-bold text-3xl text-center">Get ready for a new era.</h1>
                     <p className="mt-2">The Horizon storefront is currently under heavy developent. The Horizon storefront is currently under heavy development. You can find the latest information about our development progress on our website and on our Discord server. </p>
