@@ -32,6 +32,26 @@ function createWindow() {
     console.debug("Starting init...");
     LauncherConfigHandler.Init();
     console.debug("Finished init!");
+  });
+  // Window Contols
+  ipcMain.on('close-app', () => {
+    if(mainWindow.isClosable()){
+      mainWindow.close();
+    }
+  });
+  ipcMain.on('minimize-app', () => {
+    if(mainWindow.isMinimizable()){
+      mainWindow.minimize();
+    }
+  });
+  ipcMain.on('maximize-normalize-app', () => {
+    if(mainWindow.isMaximized()){
+      mainWindow.unmaximize();
+    }else{
+      if(mainWindow.isMaximizable){
+        mainWindow.maximize();
+      }
+    }
   })
 }
 

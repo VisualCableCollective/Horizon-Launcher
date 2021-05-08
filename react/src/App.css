@@ -9,3 +9,7 @@
 html, body {
   background-color: transparent;
 }
+
+.title-bar-icons-wrapper {
+  -webkit-app-region: no-drag;
+}

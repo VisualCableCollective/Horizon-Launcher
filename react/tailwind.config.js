@@ -8,6 +8,7 @@ module.exports = {
       },
       backgroundColor: {
         'button-1': '#3b3b3b',
+        'default-bg-highlighted': '#333333',
       },
       animation: {
         'spin-faster': 'spin 0.75s linear infinite',
