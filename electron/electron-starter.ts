@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require('electron')
-const path = require('path')
-const fs = require('fs');
+import { app, BrowserWindow, ipcMain } from 'electron';
+import fs from 'fs';
+import LauncherConfigHandler from "./handlers/LauncherConfigHandler";
 
 function createWindow() {
   // Create the browser window.
@@ -28,19 +28,11 @@ function createWindow() {
   ipcMain.on('change-window-background', (event, arg) => {
     console.debug("Received background change: '" + arg + "'");
     mainWindow.setBackgroundColor("#FFFFFF");
-  })
-
-  ipcMain.on('init-launcher-data-storage', (event, arg) => {
-    let appDataFolder = app.getPath("appData") + "/Horizon Launcher/";
-    let dataFilePath = appDataFolder + "data.json";
-    console.log(appDataFolder);
-
-    if(!fs.existsSync(appDataFolder)){
-      fs.mkdirSync(appDataFolder);
-    }
-    if(!fs.existsSync(dataFilePath)){
-      fs.writeFileSync(dataFilePath, "");
-    }
+  });
+  ipcMain.on('init', () => {
+    console.debug("Starting init...");
+    LauncherConfigHandler.Init();
+    console.debug("Finished init!");
   })
 }
 

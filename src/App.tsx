@@ -7,25 +7,28 @@ import LoginPage from "./pages/LoginPage";
 
 // Handlers
 import WebsocketHandler from "./handlers/WebsocketHandler";
-import LauncherDataHandler from "./handlers/LauncherDataHandler";
 
 // Modules
 import { useState, useEffect } from "react";
 
 import './App.css';
 
+const {ipcRenderer} = window.require("electron");
+
 function App() {
   const [isLoadingOverlayVisible, setIsLoadingOverlayVisible] = useState(true);
   const [canRenderPage, setCanRenderPage] = useState(false);
   let currentPage = null;
 
-  LauncherDataHandler.Init();
+  useEffect(() => {
+    ipcRenderer.sendSync("init");
 
-  WebsocketHandler.Init();
-  WebsocketHandler.echoHandler.connector.pusher.connection.bind('connected', () => {
-    setCanRenderPage(true);
-    setIsLoadingOverlayVisible(false);
-  });
+    WebsocketHandler.Init();
+    WebsocketHandler.echoHandler.connector.pusher.connection.bind('connected', () => {
+      setCanRenderPage(true);
+      setIsLoadingOverlayVisible(false);
+    });
+  }, []);
 
   currentPage = <LoginPage />;
 

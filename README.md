@@ -22,3 +22,4 @@ This repository currently has 1 branch:
 
 ## Additional Packages
 - [TailwindCSS](https://tailwindcss.com/): CSS Framework
+- [electron-store](https://github.com/sindresorhus/electron-store): Electron data storage
