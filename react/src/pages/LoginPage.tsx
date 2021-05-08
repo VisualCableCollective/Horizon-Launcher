@@ -1,5 +1,8 @@
 import Config from "../Config";
 
+// Pages
+import HomePage from "../pages/HomePage";
+
 // Handlers
 import WebsocketHandler from "../handlers/WebsocketHandler";
 
@@ -11,14 +14,14 @@ import { ImSpinner8 } from "react-icons/im";
 import { useEffect, useState } from 'react';
 import PropTypes, { InferProps } from "prop-types";
 const electron = window.require("electron");
+const { ipcRenderer } = window.require("electron");
 
-function LoginPage() {
+function LoginPage({ setCurrentPage }: InferProps<typeof LoginPage.propTypes>) {
     let [currentDialog, setCurrentDialog] = useState<JSX.Element>();
-
     // Initial stuff
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} />);
+        setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
     }, []);
 
     return (
@@ -29,10 +32,13 @@ function LoginPage() {
         </div>
     );
 }
+LoginPage.propTypes = {
+    setCurrentPage: PropTypes.func.isRequired
+}
 
-function SelectLoginOptionDialog({ setCurrentDialog }: InferProps<typeof SelectLoginOptionDialog.propTypes>) {
+function SelectLoginOptionDialog({ setCurrentDialog, setCurrentPage }: InferProps<typeof SelectLoginOptionDialog.propTypes>) {
     function LoginUsingBrowserOptionButtonClicked() {
-        setCurrentDialog(<LoginUsingBrowserDialog setCurrentDialog={setCurrentDialog} />)
+        setCurrentDialog(<LoginUsingBrowserDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />)
         electron.shell.openExternal(Config.getAPIServerURL() + "/auth/vcc/redirect?socketID=" + encodeURI(WebsocketHandler.echoHandler.socketId()))
     }
     return (
@@ -55,19 +61,20 @@ function SelectLoginOptionDialog({ setCurrentDialog }: InferProps<typeof SelectL
     );
 }
 SelectLoginOptionDialog.propTypes = {
-    setCurrentDialog: PropTypes.func.isRequired
+    setCurrentDialog: PropTypes.func.isRequired,
+    setCurrentPage: PropTypes.func.isRequired,
 }
 
-function LoginUsingBrowserDialog({ setCurrentDialog }: InferProps<typeof LoginUsingBrowserDialog.propTypes>) {
+function LoginUsingBrowserDialog({ setCurrentDialog, setCurrentPage }: InferProps<typeof LoginUsingBrowserDialog.propTypes>) {
     // Initial stuff
     useEffect(() => {
         WebsocketHandler.echoHandler.channel("client." + WebsocketHandler.echoHandler.socketId())
             .listen('.user.authorized', (e: any) => {
-                if(e.authToken){
-                    setCurrentDialog(<WaitUntilLoggedInDialog receivedAuthToken={e.authToken} setCurrentDialog={setCurrentDialog}/>);
+                if (e.authToken) {
+                    setCurrentDialog(<WaitUntilLoggedInDialog receivedAuthToken={e.authToken} setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
                 }
             });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -78,9 +85,9 @@ function LoginUsingBrowserDialog({ setCurrentDialog }: InferProps<typeof LoginUs
     });
 
     function CancelButtonClicked() {
-        setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} />)
+        setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />)
     }
-    
+
     return (
         <div className="dialog">
             <h1 className="text-lg font-semibold">Complete your login in your browser.</h1>
@@ -95,14 +102,34 @@ function LoginUsingBrowserDialog({ setCurrentDialog }: InferProps<typeof LoginUs
     );
 }
 LoginUsingBrowserDialog.propTypes = {
-    setCurrentDialog: PropTypes.func.isRequired
+    setCurrentDialog: PropTypes.func.isRequired,
+    setCurrentPage: PropTypes.func.isRequired,
 }
 
-function WaitUntilLoggedInDialog({ setCurrentDialog, receivedAuthToken }: InferProps<typeof WaitUntilLoggedInDialog.propTypes>) {
+function WaitUntilLoggedInDialog({ setCurrentDialog, receivedAuthToken, setCurrentPage }: InferProps<typeof WaitUntilLoggedInDialog.propTypes>) {
     // Initial stuff
     useEffect(() => {
-        console.log("token: " + receivedAuthToken);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (receivedAuthToken === '') {
+            setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
+        }
+        let result: boolean = ipcRenderer.sendSync('set-launcher-config-value', { key: "authToken", value: receivedAuthToken.trim() })
+        console.log("Save authToken result: " + result);
+        if (result === false) {
+            setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
+            return;
+        } else {
+            console.log(1);
+            setCurrentPage(<HomePage />)
+        }
+        /*ipcRenderer.invoke('set-launcher-config-value', {key: "authToken", value: receivedAuthToken.trim() }).then((result: boolean) => {
+            if(result === false){
+                setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage}/>);
+                return;
+            }else{
+                setCurrentPage(<HomePage />)
+            }
+          })*/
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -120,6 +147,7 @@ function WaitUntilLoggedInDialog({ setCurrentDialog, receivedAuthToken }: InferP
 WaitUntilLoggedInDialog.propTypes = {
     setCurrentDialog: PropTypes.func.isRequired,
     receivedAuthToken: PropTypes.string.isRequired,
+    setCurrentPage: PropTypes.func.isRequired,
 }
 
 export default LoginPage;

@@ -18,9 +18,10 @@ const {ipcRenderer} = window.require("electron");
 function App() {
   const [isLoadingOverlayVisible, setIsLoadingOverlayVisible] = useState(true);
   const [canRenderPage, setCanRenderPage] = useState(false);
-  let currentPage = null;
+  const [currentPage, setCurrentPage] = useState<JSX.Element>();
 
   useEffect(() => {
+    setCurrentPage(<LoginPage setCurrentPage={setCurrentPage} />);
     ipcRenderer.sendSync("init");
 
     WebsocketHandler.Init();
@@ -29,8 +30,6 @@ function App() {
       setIsLoadingOverlayVisible(false);
     });
   }, []);
-
-  currentPage = <LoginPage />;
 
   return (
     <div className="App font-titillium-web text-white">
