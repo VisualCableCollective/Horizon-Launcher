@@ -5,7 +5,7 @@ function ProductPlaceholderPreviewItem() {
     return (
         <div className="product-preview-item flex flex-col items-start animate-pulse">
             <div className="product-preview-banner-wrapper" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT + "px", width: PRODUCT_PREVIEW_BANNER_WIDTH + "px" }}>
-                <div className="banner-bg absolute flex justify-center items-center" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT + "px", width: PRODUCT_PREVIEW_BANNER_WIDTH + "px" }}>
+                <div className="banner-bg static flex justify-center items-center" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT + "px", width: PRODUCT_PREVIEW_BANNER_WIDTH + "px" }}>
                     <div className="rounded bg-gray-800" style={{ height: PRODUCT_PREVIEW_BANNER_HEIGHT + "px", width: PRODUCT_PREVIEW_BANNER_WIDTH + "px" }} />
                 </div>
             </div>

@@ -10,8 +10,8 @@ import TitleBar from "../components/TitleBar";
 import Product, { OwnershipStatus } from "../models/Product";
 
 const HomePage = () => {
-    let dummyProduct = new Product("VTCManager", VTCMBanner.toString(), OwnershipStatus.Owned);
-    dummyProduct.installationProgress = 10;
+    let dummyProduct = new Product("VTCManager", VTCMBanner.toString(), OwnershipStatus.Installing);
+    dummyProduct.installationProgress = 80;
 
     return (
         <div className="home-page">
@@ -23,8 +23,13 @@ const HomePage = () => {
                 </div>
                 <div className="vcc-products-wrapper flex flex-col justify-center items-start w-full max-w-screen-xl">
                     <h2 className="text-lg font-semibold text-left w-full mb-2">Applications made by the VisualCableCollective</h2>
-                    <div className="apps-row-wrapper flex flex-row items-center">
+                    <div className="apps-row-wrapper max-w-screen-xl flex flex-row items-start gap-3 overflow-x-scroll">
                         <ProductPreviewItem product={dummyProduct} />
+                        <ProductPlaceholderPreviewItem />
+                        <ProductPlaceholderPreviewItem />
+                        <ProductPlaceholderPreviewItem />
+                        <ProductPlaceholderPreviewItem />
+                        <ProductPlaceholderPreviewItem />
                         <ProductPlaceholderPreviewItem />
                         <ProductPlaceholderPreviewItem />
                     </div>
