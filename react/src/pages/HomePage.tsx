@@ -3,6 +3,7 @@ import VTCMBanner from "../assets/vtcm-banner.png";
 
 // Components
 import ProductPreviewItem from "../components/products/ProductPreviewItem";
+import ProductPlaceholderPreviewItem from "../components/products/ProductPlaceholderPreviewItem";
 import TitleBar from "../components/TitleBar";
 
 // Models
@@ -24,6 +25,8 @@ const HomePage = () => {
                     <h2 className="text-lg font-semibold text-left w-full mb-2">Applications made by the VisualCableCollective</h2>
                     <div className="apps-row-wrapper flex flex-row items-center">
                         <ProductPreviewItem product={dummyProduct} />
+                        <ProductPlaceholderPreviewItem />
+                        <ProductPlaceholderPreviewItem />
                     </div>
                 </div>
             </div>
