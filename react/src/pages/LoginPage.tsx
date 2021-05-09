@@ -16,12 +16,32 @@ import PropTypes, { InferProps } from "prop-types";
 const electron = window.require("electron");
 const { ipcRenderer } = window.require("electron");
 
-function LoginPage({ setCurrentPage }: InferProps<typeof LoginPage.propTypes>) {
+function LoginPage({ setCurrentPage, setIsLoadingOverlayVisible }: InferProps<typeof LoginPage.propTypes>) {
     let [currentDialog, setCurrentDialog] = useState<JSX.Element>();
     // Initial stuff
     useEffect(() => {
+        let authTokenInStorage: string = ipcRenderer.sendSync('get-launcher-config-value', { key: "authToken" });
+        if (authTokenInStorage) {
+            IsAuthTokenValid(authTokenInStorage).then((result: boolean) => {
+                if (result) {
+                    setCurrentPage(<HomePage />);
+                    if (setIsLoadingOverlayVisible) {
+                        setIsLoadingOverlayVisible(false);
+                    }
+                } else {
+                    setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
+                    if (setIsLoadingOverlayVisible) {
+                        setIsLoadingOverlayVisible(false);
+                    }
+                }
+            })
+        } else {
+            setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
+            if (setIsLoadingOverlayVisible) {
+                setIsLoadingOverlayVisible(false);
+            }
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
     }, []);
 
     return (
@@ -33,7 +53,25 @@ function LoginPage({ setCurrentPage }: InferProps<typeof LoginPage.propTypes>) {
     );
 }
 LoginPage.propTypes = {
-    setCurrentPage: PropTypes.func.isRequired
+    setCurrentPage: PropTypes.func.isRequired,
+    setIsLoadingOverlayVisible: PropTypes.func,
+}
+
+async function IsAuthTokenValid(authToken: string, callback: void) {
+    const options = {
+        headers: new Headers({ 'Authorization': 'Bearer ' + authToken }),
+    };
+    let fetchResult = await fetch("http://localhost:8000/api/user/me", options);
+    if (fetchResult.status === 200) {
+        console.log("[AuthTokenValidator] Successfully validated the token");
+        console.debug("[AuthTokenValidator] Server response status code: " + fetchResult.status);
+        console.debug("[AuthTokenValidator] Server response body: " + fetchResult.body);
+        return true;
+    } else {
+        console.error("[AuthTokenValidator] Error: Token is invalid. Server responded with " + fetchResult.status);
+        console.error("[AuthTokenValidator] Error: Response body: " + fetchResult.body);
+        return false;
+    }
 }
 
 function SelectLoginOptionDialog({ setCurrentDialog, setCurrentPage }: InferProps<typeof SelectLoginOptionDialog.propTypes>) {
@@ -112,15 +150,20 @@ function WaitUntilLoggedInDialog({ setCurrentDialog, receivedAuthToken, setCurre
         if (receivedAuthToken === '') {
             setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
         }
-        let result: boolean = ipcRenderer.sendSync('set-launcher-config-value', { key: "authToken", value: receivedAuthToken.trim() })
-        console.log("Save authToken result: " + result);
-        if (result === false) {
-            setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
-            return;
-        } else {
-            console.log(1);
-            setCurrentPage(<HomePage />)
-        }
+        IsAuthTokenValid(receivedAuthToken).then((result: boolean) => {
+            if (result) {
+                let result: boolean = ipcRenderer.sendSync('set-launcher-config-value', { key: "authToken", value: receivedAuthToken.trim() })
+                if (result === false) {
+                    // ToDo: show error in UI
+                    setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
+                } else {
+                    setCurrentPage(<HomePage />);
+                }
+            } else {
+                // ToDo: show error in UI
+                setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage} />);
+            }
+        })
         /*ipcRenderer.invoke('set-launcher-config-value', {key: "authToken", value: receivedAuthToken.trim() }).then((result: boolean) => {
             if(result === false){
                 setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} setCurrentPage={setCurrentPage}/>);

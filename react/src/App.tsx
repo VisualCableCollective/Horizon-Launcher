@@ -21,13 +21,12 @@ function App() {
   const [currentPage, setCurrentPage] = useState<JSX.Element>();
 
   useEffect(() => {
-    setCurrentPage(<LoginPage setCurrentPage={setCurrentPage} />);
+    setCurrentPage(<LoginPage setCurrentPage={setCurrentPage} setIsLoadingOverlayVisible={setIsLoadingOverlayVisible} />);
     ipcRenderer.sendSync("init");
 
     WebsocketHandler.Init();
     WebsocketHandler.echoHandler.connector.pusher.connection.bind('connected', () => {
       setCanRenderPage(true);
-      setIsLoadingOverlayVisible(false);
     });
   }, []);
 
