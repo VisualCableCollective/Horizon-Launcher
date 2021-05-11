@@ -1,5 +1,7 @@
 import Config from "../Config";
 
+import Log from "./Log";
+
 import Echo from "laravel-echo";
 import { resolve } from "node:path";
 const Pusher = require('pusher-js');
@@ -12,6 +14,7 @@ class WebsocketHandler {
         if (this.initDone) {
             return;
         }
+        Log.silly("WebsocketHandler", "Starting...");
         this.echoHandler = new Echo({
             broadcaster: 'pusher',
             key: Config.pusherKey,
@@ -25,7 +28,8 @@ class WebsocketHandler {
         // Configure echoHandler events
         this.echoHandler.connector.pusher.connection.bind('connected', () => {
             setTimeout(() => {
-                console.log("Socket ID: " + this.echoHandler.socketId());
+                Log.silly("WebsocketHandler", "Connected to the Horizon WS Server");
+                Log.debug("WebsocketHandler", "Current WS ID: " + this.echoHandler.socketId());
                 this.echoHandler.connector.pusher.config.auth.headers["X-Socket-ID"] = this.echoHandler.socketId();
                 this.echoHandler.connector.pusher.config.auth.headers["Authorization"] = "Bearer 2|uUpNkiQuzrAj6FNEMZ63OKdITAEV845Y97nt473e";
                 this.echoHandler.connector.pusher.config.auth.headers["Accept"] = "application/json";
@@ -34,6 +38,7 @@ class WebsocketHandler {
         });
         this.echoHandler.connect();
         this.initDone = true;
+        Log.silly("WebsocketHandler", "Started.");
     };
 
     /* HOW TO LISTEN FOR EVENTS

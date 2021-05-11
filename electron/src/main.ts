@@ -1,6 +1,10 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow, ipcMain } from 'electron';
-import LauncherConfigHandler from "./handlers/LauncherConfigHandler";
+import LauncherConfigHandler from './handlers/LauncherConfigHandler';
+import log from 'electron-log';
+
+// override default logger
+Object.assign(console, log.functions);
 
 function createWindow() {
   // Create the browser window.
@@ -35,22 +39,40 @@ function createWindow() {
   });
   // Window Contols
   ipcMain.on('close-app', () => {
-    if(mainWindow.isClosable()){
+    if (mainWindow.isClosable()) {
       mainWindow.close();
     }
   });
   ipcMain.on('minimize-app', () => {
-    if(mainWindow.isMinimizable()){
+    if (mainWindow.isMinimizable()) {
       mainWindow.minimize();
     }
   });
   ipcMain.on('maximize-normalize-app', () => {
-    if(mainWindow.isMaximized()){
+    if (mainWindow.isMaximized()) {
       mainWindow.unmaximize();
-    }else{
-      if(mainWindow.isMaximizable){
+    } else {
+      if (mainWindow.isMaximizable) {
         mainWindow.maximize();
       }
+    }
+  });
+  ipcMain.on('log', (event, arg: { type: string, message: string }) => {
+    if (arg.type === "SILLY") {
+      log.silly(arg.message);
+    } else if (arg.type === "DEBUG") {
+      log.debug(arg.message);
+    } else if (arg.type === "VERBOSE") {
+      log.verbose(arg.message);
+    }
+    else if (arg.type === "INFO") {
+      log.info(arg.message);
+    }
+    else if (arg.type === "WARN") {
+      log.warn(arg.message);
+    }
+    else if (arg.type === "ERROR") {
+      log.error(arg.message);
     }
   })
 }
