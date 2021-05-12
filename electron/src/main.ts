@@ -74,6 +74,7 @@ function createWindow() {
     else if (arg.type === "ERROR") {
       log.error(arg.message);
     }
+    return;
   })
 }
 

@@ -5,6 +5,7 @@ import HomePage from "../pages/HomePage";
 
 // Handlers
 import WebsocketHandler from "../handlers/WebsocketHandler";
+import Log from "../handlers/Log";
 
 // Icons
 import { IconContext } from "react-icons";
@@ -63,13 +64,13 @@ async function IsAuthTokenValid(authToken: string, callback: void) {
     };
     let fetchResult = await fetch("http://localhost:8000/api/user/me", options);
     if (fetchResult.status === 200) {
-        console.log("[AuthTokenValidator] Successfully validated the token");
-        console.debug("[AuthTokenValidator] Server response status code: " + fetchResult.status);
-        console.debug("[AuthTokenValidator] Server response body: " + fetchResult.body);
+        Log.info("AuthTokenValidator", "Successfully validated the token");
+        Log.debug("AuthTokenValidator", "Server response status code: " + fetchResult.status);
+        Log.debug("AuthTokenValidator", "Server response body: " + fetchResult.body);
         return true;
     } else {
-        console.error("[AuthTokenValidator] Error: Token is invalid. Server responded with " + fetchResult.status);
-        console.error("[AuthTokenValidator] Error: Response body: " + fetchResult.body);
+        Log.error("AuthTokenValidator", "Error: Token is invalid. Server responded with " + fetchResult.status);
+        Log.error("AuthTokenValidator", "Error: Response body: " + fetchResult.body);
         return false;
     }
 }

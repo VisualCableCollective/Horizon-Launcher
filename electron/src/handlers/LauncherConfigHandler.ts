@@ -24,7 +24,7 @@ export default class LauncherConfigHandler {
                 return;
             }
             const val = this.store.get(arg.key);
-            console.debug(this.logPrefix + "Key: " + arg.key + "| Value: " + val);
+            console.debug(this.logPrefix + "Key: " + arg.key + " | Value: " + val);
             event.returnValue = val;
         });
 
