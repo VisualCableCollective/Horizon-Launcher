@@ -1,5 +1,7 @@
 // Modules
 import PropTypes, { InferProps } from "prop-types";
+import {useEffect, useState} from "react";
+import Log from "../handlers/Log";
 const { ipcRenderer } = window.require("electron");
 
 // Window Control SVG paths
@@ -9,11 +11,20 @@ const maximizePath = 'M 0,0 0,10 10,10 10,0 Z M 1,1 9,1 9,9 1,9 Z';
 const minimizePath = 'M 0,5 10,5 10,6 0,6 Z';
 
 const TitleBar = () => {
+    const [isWindowMaximized, setIsWindowMaximized] = useState(false);
+
+    useEffect(()=>{
+        ipcRenderer.on("window-size-mode-changed", (event: any, arg: { isMaximized: boolean }) => {
+            Log.silly("WindowTitleBar", "Window maximized: " + arg.isMaximized);
+            setIsWindowMaximized(arg.isMaximized);
+        });
+    }, []);
+
     return (
     <div className="title-bar flex items-start justify-end flex-row">
         <div className="title-bar-icons-wrapper flex flex-row">
             <Icon svgPath={minimizePath} onClick={MinimizeButtonClicked}/>
-            <Icon svgPath={maximizePath} onClick={MaximizeNormalizeButtonClicked}/>
+            <Icon svgPath={isWindowMaximized ? restorePath : maximizePath} onClick={MaximizeNormalizeButtonClicked}/>
             <Icon svgPath={closePath} onClick={CloseButtonClicked} additionalClasses="hover:bg-red-600"/>
         </div>
     </div>

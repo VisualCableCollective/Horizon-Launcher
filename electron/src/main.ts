@@ -25,6 +25,14 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:3000')
 
+  // event handling
+  mainWindow.on("maximize", () => {
+    mainWindow.webContents.send('window-size-mode-changed', {isMaximized: true})
+  })
+  mainWindow.on("unmaximize", () => {
+    mainWindow.webContents.send('window-size-mode-changed', {isMaximized: false})
+  })
+
   // ipc stuff
 
   // Background change
