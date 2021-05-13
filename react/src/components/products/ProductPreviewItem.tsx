@@ -20,7 +20,7 @@ function ProductPreviewItem({ product }: InferProps<typeof ProductPreviewItem.pr
     );
 }
 ProductPreviewItem.propTypes = {
-    product: Product
+    product: PropTypes.instanceOf(Product).isRequired
 }
 
 function ProductPreviewBanner({ productOwnershipStatus, bannerImgSrc, productInstallationProgress }: InferProps<typeof ProductPreviewBanner.propTypes>) {
@@ -44,7 +44,7 @@ function ProductPreviewBanner({ productOwnershipStatus, bannerImgSrc, productIns
     );
 }
 ProductPreviewBanner.propTypes = {
-    productOwnershipStatus: OwnershipStatus,
+    productOwnershipStatus: PropTypes.number.isRequired,
     bannerImgSrc: PropTypes.string.isRequired,
     productInstallationProgress: PropTypes.number.isRequired,
 }
@@ -81,7 +81,7 @@ function ProductInteractionSection({ product }: InferProps<typeof ProductInterac
     );
 }
 ProductInteractionSection.propTypes = {
-    product: Product
+    product: PropTypes.instanceOf(Product).isRequired
 }
 
 export default ProductPreviewItem;

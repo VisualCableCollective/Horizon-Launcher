@@ -2,7 +2,6 @@
 import LoadingOverlay from "./overlays/LoadingOverlay";
 
 // Pages
-import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 
 // Handlers
