@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 
 // Handlers
 import WebsocketHandler from "./handlers/WebsocketHandler";
+import HorizonAPIClientHandler from "./handlers/HorizonAPIClientHandler";
 
 // Modules
 import { useState, useEffect } from "react";
@@ -22,6 +23,8 @@ function App() {
   useEffect(() => {
     setCurrentPage(<LoginPage setCurrentPage={setCurrentPage} setIsLoadingOverlayVisible={setIsLoadingOverlayVisible} />);
     ipcRenderer.sendSync("init");
+
+    HorizonAPIClientHandler.Init();
 
     WebsocketHandler.Init();
     WebsocketHandler.echoHandler.connector.pusher.connection.bind('connected', () => {

@@ -5,6 +5,7 @@ import HomePage from "../pages/HomePage";
 
 // Handlers
 import WebsocketHandler from "../handlers/WebsocketHandler";
+import HorizonAPIClientHandler from "../handlers/HorizonAPIClientHandler";
 import Log from "../handlers/Log";
 
 // Icons
@@ -59,18 +60,12 @@ LoginPage.propTypes = {
 }
 
 async function IsAuthTokenValid(authToken: string, callback: void) {
-    const options = {
-        headers: new Headers({ 'Authorization': 'Bearer ' + authToken }),
-    };
-    let fetchResult = await fetch("http://localhost:8000/api/user/me", options);
-    if (fetchResult.status === 200) {
+    let isTokenValid = await HorizonAPIClientHandler.client.authenticateUserWithToken(authToken);
+    if (isTokenValid) {
         Log.info("AuthTokenValidator", "Successfully validated the token");
-        Log.debug("AuthTokenValidator", "Server response status code: " + fetchResult.status);
-        Log.debug("AuthTokenValidator", "Server response body: " + fetchResult.body);
         return true;
     } else {
-        Log.error("AuthTokenValidator", "Error: Token is invalid. Server responded with " + fetchResult.status);
-        Log.error("AuthTokenValidator", "Error: Response body: " + fetchResult.body);
+        Log.error("AuthTokenValidator", "Token was invalid");
         return false;
     }
 }
