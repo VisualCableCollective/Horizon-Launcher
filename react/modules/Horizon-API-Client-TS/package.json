@@ -1,6 +1,6 @@
 {
   "name": "horizon-api-client-ts",
-  "version": "1.0.0",
+  "version": "1.0.1-dev",
   "description": "Horizon API Client written in Typescript",
   "main": "lib/HorizonAPIClient.js",
   "types": "lib/HorizonAPIClient.d.ts",
