@@ -1,11 +1,12 @@
-export default class Product{
-    name: string;
+import {Product as APIProduct} from 'horizon-api-client-ts';
+
+export default class Product extends APIProduct{
     bannerImgSrc: string;
     ownershipStatus: OwnershipStatus;
     installationProgress: number = 0;
 
-    constructor(name: string, bannerImgSrc: string, ownershipStatus: OwnershipStatus) {
-        this.name = name;
+    constructor(apiProduct: APIProduct, bannerImgSrc: string, ownershipStatus: OwnershipStatus) {
+        super(apiProduct);
         this.ownershipStatus = ownershipStatus;
         this.bannerImgSrc = bannerImgSrc;
     }

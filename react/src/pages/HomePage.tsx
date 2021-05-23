@@ -9,9 +9,37 @@ import TitleBar from "../components/TitleBar";
 // Models
 import Product, { OwnershipStatus } from "../models/Product";
 
+// Handlers
+import { HorizonAPIClient } from "horizon-api-client-ts";
+import Log from "../handlers/Log";
+
+import { useEffect, useState } from "react";
+
 const HomePage = () => {
-    let dummyProduct = new Product("VTCManager", VTCMBanner.toString(), OwnershipStatus.Installing);
-    dummyProduct.installationProgress = 80;
+    let [products, setProducts] = useState<JSX.Element[]>([<ProductPlaceholderPreviewItem key={1} />, <ProductPlaceholderPreviewItem key={2} />, <ProductPlaceholderPreviewItem key={3} />]);
+    useEffect(() => {
+        // Get Apps by the VCC
+        HorizonAPIClient.getTeam(1).then((team) => {
+            if (team === null) {
+                return;
+            }
+            team.getProducts().then((products) => {
+                if (products === null) {
+                    return;
+                }
+                if (products.length < 1) {
+                    return;
+                }
+                let newProducts: JSX.Element[] = [];
+                products.forEach((product) => {
+                    let newProduct = new Product(product, VTCMBanner.toString(), OwnershipStatus.Installing);
+                    newProduct.installationProgress = 80;
+                    newProducts.push(<ProductPreviewItem key={newProduct.id} product={newProduct} />);
+                });
+                setProducts(newProducts);
+            });
+        });
+    }, []);
 
     return (
         <div className="home-page overflow-y-hidden h-screen">
@@ -24,14 +52,7 @@ const HomePage = () => {
                 <div className="vcc-products-wrapper flex-grow flex flex-col justify-center items-start max-w-screen-xl py-5">
                     <h2 className="text-lg font-semibold text-left w-full mb-2">Applications made by the VisualCableCollective</h2>
                     <div className="apps-row-wrapper flex flex-wrap flex-row items-start gap-3 overflow-x-auto">
-                        <ProductPreviewItem product={dummyProduct} />
-                        <ProductPlaceholderPreviewItem />
-                        <ProductPlaceholderPreviewItem />
-                        <ProductPlaceholderPreviewItem />
-                        <ProductPlaceholderPreviewItem />
-                        <ProductPlaceholderPreviewItem />
-                        <ProductPlaceholderPreviewItem />
-                        <ProductPlaceholderPreviewItem />
+                        {products}
                     </div>
                 </div>
             </div>
