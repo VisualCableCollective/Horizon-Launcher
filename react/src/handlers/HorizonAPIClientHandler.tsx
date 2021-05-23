@@ -8,8 +8,7 @@ class HorizonAPIClientHandler {
     if(this.initDone){
       return;
     }
-    let config = new HorizonAPIClientConfig(Environment.LocalDevelopment);
-    this.client = new  HorizonAPIClient(config);
+    HorizonAPIClient.Config = new HorizonAPIClientConfig(Environment.LocalDevelopment);
   }
 }
 

@@ -5,7 +5,7 @@ import HomePage from "../pages/HomePage";
 
 // Handlers
 import WebsocketHandler from "../handlers/WebsocketHandler";
-import HorizonAPIClientHandler from "../handlers/HorizonAPIClientHandler";
+import {HorizonAPIClient} from "horizon-api-client-ts";
 import Log from "../handlers/Log";
 
 // Icons
@@ -60,7 +60,7 @@ LoginPage.propTypes = {
 }
 
 async function IsAuthTokenValid(authToken: string, callback: void) {
-    let isTokenValid = await HorizonAPIClientHandler.client.authenticateUserWithToken(authToken);
+    let isTokenValid = await HorizonAPIClient.authenticateUserWithToken(authToken);
     if (isTokenValid) {
         Log.info("AuthTokenValidator", "Successfully validated the token");
         return true;
