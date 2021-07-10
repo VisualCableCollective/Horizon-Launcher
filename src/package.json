@@ -13,6 +13,7 @@
   "dependencies": {
     "electron-serve": "^1.1.0",
     "electron-store": "^7.0.2",
+    "horizon-api-client-ts": "C:\\Users\\Joschua\\Documents\\GitHub\\VCC\\Horizon-Launcher\\src\\modules\\Horizon-API-Client-TS",
     "next-images": "^1.8.1",
     "styled-components": "^5.3.0"
   },

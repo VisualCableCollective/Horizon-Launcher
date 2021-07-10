@@ -1,13 +1,19 @@
 // Assets
 import LoadingIndicator from "../../../assets/animations/overlays/loading-indicator.gif";
 
+// Contexts
+import LoadingOverlayContext from "../../../contexts/loading-overlay-context";
+
 // Modules
 import styled, {css} from "styled-components";
 import Image from 'next/image';
+import {useContext} from "react";
 
-function LoadingOverlay({ isVisible }) {
+function LoadingOverlay() {
+    const loadingOverlayCtx = useContext(LoadingOverlayContext);
+
     return (
-        <Wrapper isVisible={isVisible}>
+        <Wrapper isVisible={loadingOverlayCtx.isVisible}>
             <Image src={LoadingIndicator} alt="Loading..." height={"100px"} width={"100px"} layout={"fixed"}  style={{maxHeight: "100px"}} />
         </Wrapper>
     );
