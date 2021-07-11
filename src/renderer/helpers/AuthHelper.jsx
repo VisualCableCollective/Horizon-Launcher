@@ -1,5 +1,5 @@
 // Custom Modules
-import {HorizonAPIClient} from "horizon-api-client-ts";
+import {HorizonAPIClient} from "horizon-api-client";
 
 // Modules
 import electron from "electron";
