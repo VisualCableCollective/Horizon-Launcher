@@ -4,12 +4,13 @@ import SelectLoginOptionDialog from "../../components/dialogs/login/SelectLoginO
 // Contexts
 import LoadingOverlayContext from "../../contexts/loading-overlay-context";
 
+// Helpers
+import AuthHelper from "../../helpers/AuthHelper";
+
 // Modules
 import {useState, useEffect, useContext} from "react";
 import electron from 'electron';
-
-// Custom Modules
-import {HorizonAPIClient} from "horizon-api-client-ts";
+import styled from "styled-components";
 
 const ipcRenderer = electron.ipcRenderer || false;
 
@@ -22,33 +23,45 @@ function Login() {
 
     // Init
     useEffect(() => {
-        let authTokenInStorage = ipcRenderer.sendSync('get-launcher-config-value', { key: "authToken" });
-        if (authTokenInStorage) {
-            IsAuthTokenValid(authTokenInStorage).then((result) => {
-                if (result) {
-                    // set current page home page
-                    loadingOverlayCtx.setIsVisible(false);
-                } else {
-                    setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} />);
-                    loadingOverlayCtx.setIsVisible(false);
-                }
-            })
-        } else {
-            setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} />);
-            loadingOverlayCtx.setIsVisible(false);
-        }
+        new AuthHelper().IsAuthTokenValid().then((result) => {
+            if (result) {
+                // set current page home page
+                loadingOverlayCtx.setIsVisible(false);
+            } else {
+                setCurrentDialog(<SelectLoginOptionDialog setCurrentDialog={setCurrentDialog} />);
+                loadingOverlayCtx.setIsVisible(false);
+            }
+        });
     }, []);
+
+    return (
+        <PageWrapper>
+            <DialogContainer>
+                {currentDialog}
+            </DialogContainer>
+        </PageWrapper>
+    );
 }
 
-async function IsAuthTokenValid(authToken, callback) {
-    let isTokenValid = await HorizonAPIClient.authenticateUserWithToken(authToken);
-    if (isTokenValid) {
-        Log.info("AuthTokenValidator", "Successfully validated the token");
-        return true;
-    } else {
-        Log.error("AuthTokenValidator", "Token was invalid");
-        return false;
-    }
-}
+// Styles
+const PageWrapper = styled.div`
+  min-height: 100vh;
+  min-width: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  
+  background-color: #0f0f0f;
+`;
+
+const DialogContainer = styled.div`
+  padding: 2.5rem 3.5rem;
+  
+  width: 100%;
+  max-width: 28rem;
+  
+  background-color: #242424;
+`;
 
 export default Login;

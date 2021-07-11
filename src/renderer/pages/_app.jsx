@@ -3,14 +3,24 @@
 import LoadingOverlay from "../components/overlays/LoadingOverlay";
 // ----------------
 
+// Contexts
+import {LoadingOverlayContextProvider} from "../contexts/loading-overlay-context";
+
 // Styles
 import "../styles/App.css";
 
 // Modules
-import {useState} from "react";
-import {LoadingOverlayContextProvider} from "../contexts/loading-overlay-context";
+import {useEffect} from "react";
+import {useRouter} from "next/router";
 
 function MyApp({ Component, pageProps }) {
+    const router = useRouter();
+
+    // Init
+    useEffect(() => {
+        router.push('/auth/login');
+    }, []);
+
     return (
         <div>
             <LoadingOverlayContextProvider>

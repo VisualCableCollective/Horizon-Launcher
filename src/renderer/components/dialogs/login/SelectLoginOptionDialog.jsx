@@ -2,7 +2,7 @@
 import electron from 'electron';
 import styled from "styled-components";
 
-function SelectLoginOptionDialog({/*setCurrentDialog*/ }) {
+export default function SelectLoginOptionDialog({/*setCurrentDialog*/ }) {
     function LoginUsingBrowserOptionButtonClicked() {
         //setCurrentDialog(<LoginUsingBrowserDialog setCurrentDialog={setCurrentDialog} />)
         //electron.shell.openExternal(Config.getAPIServerURL() + "/auth/vcc/redirect?socketID=" + encodeURI(WebsocketHandler.echoHandler.socketId()));
@@ -86,8 +86,3 @@ const FooterPrimaryButton = styled.button`
   line-height: 1.25rem;
   font-weight: 500;
 `;
-
-/*
-padding: 0.75rem 1.25rem; w-full bg-opacity-60 hover:bg-opacity-80 f
-  ocus:bg-opacity-100 outline-none focus:outline-none bg-button-1 rounded-sm transition-all duration-100
- */
