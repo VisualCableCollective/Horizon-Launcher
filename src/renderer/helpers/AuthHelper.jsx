@@ -1,6 +1,9 @@
 // Custom Modules
 import {HorizonAPIClient} from "horizon-api-client";
 
+// Extensions
+import Log from "../extensions/Log";
+
 // Modules
 import electron from "electron";
 

@@ -3385,7 +3385,12 @@ hoist-non-react-statics@^3.0.0:
   dependencies:
     react-is "^16.7.0"
 
-"horizon-api-client@C:\\Users\\Joschua\\Documents\\GitHub\\VCC\\Horizon-Launcher\\src\\modules\\horizon-api-client":
+"horizon-api-client@C:\\Users\\Joschua\\Documents\\GitHub\\VCC\\Horizon-Launcher\\src\\modules\\horizon-api-client\\":
+  version "1.0.1-dev"
+  dependencies:
+    node-fetch "^2.6.1"
+
+"horizon-api-client@file:modules/horizon-api-client":
   version "1.0.1-dev"
   dependencies:
     node-fetch "^2.6.1"
