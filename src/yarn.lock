@@ -3385,15 +3385,11 @@ hoist-non-react-statics@^3.0.0:
   dependencies:
     react-is "^16.7.0"
 
-"horizon-api-client@C:\\Users\\Joschua\\Documents\\GitHub\\VCC\\Horizon-Launcher\\src\\modules\\horizon-api-client\\":
+"horizon-api-client@C:\\Users\\Joschua\\Documents\\GitHub\\VCC\\Horizon-Launcher\\src\\modules\\horizon-api-client":
   version "1.0.1-dev"
-  dependencies:
-    node-fetch "^2.6.1"
 
 "horizon-api-client@file:modules/horizon-api-client":
   version "1.0.1-dev"
-  dependencies:
-    node-fetch "^2.6.1"
 
 hosted-git-info@^4.0.2:
   version "4.0.2"
@@ -4378,7 +4374,7 @@ node-addon-api@^1.6.3:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-1.7.2.tgz#3df30b95720b53c24e59948b49532b662444f54d"
   integrity sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==
 
-node-fetch@2.6.1, node-fetch@^2.6.1:
+node-fetch@2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
