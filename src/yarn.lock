@@ -3385,7 +3385,7 @@ hoist-non-react-statics@^3.0.0:
   dependencies:
     react-is "^16.7.0"
 
-"horizon-api-client@modules\\horizon-api-client":
+horizon-api-client@./modules/horizon-api-client:
   version "1.0.1-dev"
 
 hosted-git-info@^4.0.2:
