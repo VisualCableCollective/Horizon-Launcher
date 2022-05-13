@@ -5,20 +5,18 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '../components/Link';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      textAlign: 'center',
-      paddingTop: theme.spacing(4),
-    },
-  })
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  root: {
+    textAlign: 'center',
+    paddingTop: theme.spacing(4),
+  },
+}));
 
-function Next() {
+export default function Next() {
   const classes = useStyles({});
 
   return (
-    <React.Fragment>
+    <>
       <Head>
         <title>Next - Nextron (with-typescript-material-ui)</title>
       </Head>
@@ -36,8 +34,6 @@ function Next() {
           Do nothing button
         </Button>
       </div>
-    </React.Fragment>
+    </>
   );
-};
-
-export default Next;
+}
