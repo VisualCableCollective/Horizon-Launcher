@@ -1,0 +1,4 @@
+[submodule "vendor/horizon-api-client"]
+	path = vendor/horizon-api-client
+	url = https://github.com/VisualCableCollective/Horizon-API-Client-TS.git
+	branch = remake
